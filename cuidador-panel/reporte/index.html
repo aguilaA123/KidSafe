@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>KidSafe • Reportes</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Topbar -->
+  <header class="topbar topbar-reportes">
+    <h1 class="topbar-title">REPORTES</h1>
+
+    <!-- Botón crear (esquina derecha) -->
+    <button class="topbar-action" id="btn-open-form" aria-label="Nuevo reporte">
+      <span class="topbar-action-icon" aria-hidden="true">
+        <!-- square-pen -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22"
+             viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+             class="lucide lucide-square-pen-icon">
+          <path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+          <path d="M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z"/>
+        </svg>
+      </span>
+    </button>
+  </header>
+
+  <main class="content">
+    <h2 class="section-title">Panel de Reportes</h2>
+    <!-- Lista dinámica -->
+    <div id="reportes-list"></div>
+  </main>
+
+  <!-- Modal: Crear reporte -->
+  <div id="modal" class="modal hidden" aria-hidden="true">
+    <div class="modal-backdrop"></div>
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <div class="modal-header">
+        <!-- decor icon izquierda -->
+        <span class="modal-deco" aria-hidden="true">
+          <!-- warning bubble -->
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22"
+               viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+               class="lucide lucide-message-circle-warning">
+            <path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/>
+            <path d="M12 8v4"/>
+            <path d="M12 16h.01"/>
+          </svg>
+        </span>
+        <h3 id="modal-title" class="modal-title">Nuevo reporte</h3>
+        <button class="modal-close" id="modal-close" aria-label="Cerrar">×</button>
+      </div>
+
+      <div class="modal-body">
+        <label class="field-label" for="rep-texto">Detalles del reporte</label>
+        <textarea id="rep-texto" class="field-input field-textarea" rows="5" placeholder="Escribe los detalles..."></textarea>
+
+        <div class="field-row">
+          <div class="field-col">
+            <label class="field-label" for="rep-fecha">Fecha</label>
+            <input id="rep-fecha" class="field-input" type="text" inputmode="numeric" placeholder="DD/MM/AA" />
+          </div>
+          <button class="btn-date" id="btn-today" type="button" aria-label="Usar fecha de hoy">
+            <!-- calendar-check -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22"
+                 viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                 class="lucide lucide-calendar-check">
+              <path d="M8 2v4"/>
+              <path d="M16 2v4"/>
+              <rect width="18" height="18" x="3" y="4" rx="2"/>
+              <path d="M3 10h18"/>
+              <path d="m9 16 2 2 4-4"/>
+            </svg>
+          </button>
+        </div>
+
+        <button id="btn-enviar" class="btn-submit" type="button">Enviar</button>
+        <p id="form-error" class="form-error hidden"></p>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>

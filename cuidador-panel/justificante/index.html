@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>KidSafe • Justificantes</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Topbar -->
+  <header class="topbar topbar-just">
+    <h1 class="topbar-title">JUSTIFICANTES</h1>
+
+    <!-- Botón crear (esquina derecha) -->
+    <button class="topbar-action topbar-action-contrast" id="btn-open-form" aria-label="Nuevo justificante">
+      <span class="topbar-action-icon" aria-hidden="true">
+        <!-- square-pen -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22"
+             viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+          <path d="M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z"/>
+        </svg>
+      </span>
+    </button>
+  </header>
+
+  <main class="content">
+    <h2 class="section-title">Panel de Justificantes</h2>
+    <!-- Lista dinámica -->
+    <div id="just-list"></div>
+  </main>
+
+  <!-- Modal: Crear justificante -->
+  <div id="modal" class="modal hidden" aria-hidden="true">
+    <div class="modal-backdrop"></div>
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <div class="modal-header">
+        <!-- decor icon izquierda (celeste) -->
+        <span class="modal-deco modal-deco-just" aria-hidden="true">
+          <!-- notebook-pen -->
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22"
+               viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M13.4 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7.4"/>
+            <path d="M2 6h4"/><path d="M2 10h4"/><path d="M2 14h4"/><path d="M2 18h4"/>
+            <path d="M21.378 5.626a1 1 0 1 0-3.004-3.004l-5.01 5.012a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506z"/>
+          </svg>
+        </span>
+        <h3 id="modal-title" class="modal-title">Nuevo justificante</h3>
+        <button class="modal-close" id="modal-close" aria-label="Cerrar">×</button>
+      </div>
+
+      <div class="modal-body">
+        <label class="field-label" for="jus-texto">Detalles</label>
+        <textarea id="jus-texto" class="field-input field-textarea" rows="5" placeholder="Escribe los detalles..."></textarea>
+
+        <div class="field-row">
+          <div class="field-col">
+            <label class="field-label" for="jus-fecha">Fecha</label>
+            <input id="jus-fecha" class="field-input" type="text" inputmode="numeric" placeholder="DD/MM/AA" />
+          </div>
+          <button class="btn-date btn-date-just" id="btn-today" type="button" aria-label="Usar fecha de hoy">
+            <!-- calendar-check -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22"
+                 viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M8 2v4"/><path d="M16 2v4"/>
+              <rect width="18" height="18" x="3" y="4" rx="2"/>
+              <path d="M3 10h18"/><path d="m9 16 2 2 4-4"/>
+            </svg>
+          </button>
+        </div>
+
+        <button id="btn-enviar" class="btn-submit btn-submit-just" type="button">Enviar</button>
+        <p id="form-error" class="form-error hidden"></p>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>

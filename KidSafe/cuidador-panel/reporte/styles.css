@@ -1,0 +1,187 @@
+:root {
+  --bg:#0b1220;
+  --text:#e7edf7;
+  --muted:#b7c0d6;
+
+  /* Gradiente de reportes */
+  --grad-reporte-start:#b3261e;  
+  --grad-reporte-end:#8f1c18;
+
+  /* Cards */
+  --card:#101a32;
+  --border:#1e2b4d;
+
+  --accent:#ef4444; /* rojo para bordes/botones */
+  --ok:#22c55e;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+.hidden{display:none !important;}
+button{outline:none;box-shadow:none;-webkit-tap-highlight-color:transparent}
+button:focus{outline:none;box-shadow:none}
+
+/* Topbar */
+.topbar{
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  height: 56px;
+  display: grid;
+  place-items: center;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+.topbar-title{
+  margin:0;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+/* Variante específica para REPORTES */
+.topbar-reportes{
+  background: linear-gradient(90deg, var(--grad-reporte-start), var(--grad-reporte-end));
+}
+
+/* Botón acción en topbar (esquina derecha) */
+.topbar-action{
+  position:absolute; right:10px; top:50%;
+  transform: translateY(-50%);
+  border:none; cursor:pointer;
+  background: rgba(0,0,0,.12);
+  border-radius: 10px;
+  padding: 8px;
+  display: inline-grid; place-items:center;
+  color:#fff;
+}
+.topbar-action:active{ transform: translateY(-50%) scale(0.98); }
+.topbar-action-icon svg{ display:block; }
+
+/* Contenido */
+.content{
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 16px;
+}
+.section-title{
+  margin: 18px 4px 12px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--muted);
+}
+
+/* ====== Tarjetas de reporte ====== */
+.rep-card{
+  position: relative;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 14px 14px 28px 14px; /* espacio para la fecha abajo */
+  color: var(--text);
+  box-shadow: 0 8px 26px rgba(0,0,0,.25);
+  transition: outline 120ms ease, transform 80ms ease;
+  margin-bottom: 12px;
+}
+.rep-card:hover{ outline: 2px solid rgba(255,255,255,.05); cursor:pointer; }
+.rep-card:active{ transform: translateY(1px); }
+
+.rep-head{
+  display:flex; align-items:center; gap:12px; margin-bottom:8px;
+}
+
+/* === Ícono cuadrado con puntas redondas === */
+.rep-icon{
+  display:inline-grid; 
+  place-items:center;
+  width:42px;                 /* ancho fijo */
+  aspect-ratio: 1 / 1;        /* asegura cuadrado */
+  border-radius:12px;         /* puntas redondas */
+  background: linear-gradient(90deg, var(--grad-reporte-start), var(--grad-reporte-end));
+  color:#fff;
+}
+.rep-icon svg{
+  width:22px;
+  height:22px;
+  display:block;
+}
+
+.rep-title{ font-weight:800; font-size:1rem; }
+.rep-snippet{ color: var(--muted); margin-top:2px; }
+.rep-date{
+  position:absolute; right:10px; bottom:8px;
+  font-size:.78rem; color:#94a3b8;
+}
+
+/* ====== Modal Crear Reporte ====== */
+.modal{ position: fixed; inset:0; z-index: 80; }
+.modal.hidden{ display:none; }
+.modal-backdrop{
+  position:absolute; inset:0; background: rgba(0,0,0,.55);
+}
+.modal-card{
+  position: relative;
+  width: min(92%, 560px);
+  margin: auto;
+  margin-top: 10vh; /* centrado vertical con margen */
+  background:#0f172a; color:#e5e7eb;
+  border:1px solid #1f2a44; border-radius:16px;
+  box-shadow: 0 20px 60px rgba(0,0,0,.35);
+  padding: 0 0 16px 0;
+}
+.modal-header{
+  display:flex; align-items:center; gap:10px;
+  padding: 14px 14px;
+  border-bottom:1px solid #1f2a44;
+}
+.modal-deco{
+  display:inline-grid; place-items:center;
+  width:34px; height:34px; border-radius:8px;
+  background: rgba(239,68,68,.15);
+  color:#ef4444;
+}
+.modal-title{ margin:0; font-size:1.05rem; font-weight:800; flex:1; }
+.modal-close{
+  width:32px; height:32px; border:none; border-radius:8px; cursor:pointer;
+  background:#1f2a44; color:#e5e7eb; font-size:20px; line-height:32px;
+}
+
+.modal-body{ padding: 14px 14px 0; }
+
+.field-label{
+  display:block; font-weight:700; font-size:.9rem; color:#cbd5e1; margin: 10px 2px 6px;
+}
+.field-input{
+  width:100%; border:1px solid #1f2a44; background:#0b1220; color:#e5e7eb;
+  border-radius:10px; padding:10px 12px; font-size:.95rem;
+}
+.field-textarea{ resize: vertical; min-height: 120px; }
+
+.field-row{ display:flex; align-items:flex-end; gap:10px; margin-top: 10px; }
+.field-col{ flex:1; }
+
+.btn-date{
+  border:none; border-radius:10px; padding:10px 12px; cursor:pointer; color:#fff;
+  background: linear-gradient(90deg, var(--grad-reporte-start), var(--grad-reporte-end));
+}
+.btn-date:active{ transform: translateY(1px); }
+
+.btn-submit{
+  width:100%; margin-top:14px;
+  border:none; border-radius:12px; padding:12px 14px; font-weight:800; font-size:.95rem; cursor:pointer; color:#fff;
+  background: linear-gradient(90deg, var(--grad-reporte-start), var(--grad-reporte-end));
+}
+.btn-submit:active{ transform: translateY(1px); }
+
+.form-error{
+  margin:8px 2px 0; color:#f87171; font-weight:700; font-size:.9rem;
+}
+
+/* Responsivo */
+@media (min-width: 760px){
+  .content{padding: 20px}
+}

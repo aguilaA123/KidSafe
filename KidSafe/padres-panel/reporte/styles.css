@@ -1,0 +1,139 @@
+:root {
+  --bg:#0b1220;
+  --text:#e7edf7;
+  --muted:#b7c0d6;
+
+  /* Gradiente de reportes */
+  --grad-reporte-start:#b3261e;  
+  --grad-reporte-end:#8f1c18;
+
+  /* Cards */
+  --card:#101a32;
+  --border:#1e2b4d;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* Quitar focus/tap highlight molestos */
+button { outline:none; box-shadow:none; -webkit-tap-highlight-color: transparent; }
+button:focus { outline:none; box-shadow:none; }
+
+/* Utilidad */
+.hidden{ display:none !important; }
+
+/* Topbar */
+.topbar{
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  height: 56px;
+  display: grid;
+  place-items: center;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+.topbar-title{
+  margin:0;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+/* Variante específica para REPORTES */
+.topbar-reportes{
+  background: linear-gradient(90deg, var(--grad-reporte-start), var(--grad-reporte-end));
+}
+
+/* Contenido */
+.content{
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 16px;
+}
+.section-title{
+  margin: 18px 4px 12px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--muted);
+}
+
+/* ====== Tarjetas de reporte (que pinta el JS) ====== */
+.reporte-card{
+  position: relative;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 14px 14px 28px 14px; /* espacio para la fecha abajo */
+  color: var(--text);
+  box-shadow: 0 8px 26px rgba(0,0,0,.25);
+  transition: outline 120ms ease, transform 80ms ease;
+  margin-bottom: 12px; /* separación entre tarjetas */
+}
+.reporte-card:hover{ outline: 2px solid rgba(255,255,255,.05); cursor:pointer; }
+.reporte-card:active{ transform: translateY(1px); }
+
+.reporte-header{
+  display:flex; align-items:center; gap:12px; margin-bottom:8px;
+}
+.reporte-icon{
+  display:inline-grid; place-items:center;
+  width:42px; height:42px; border-radius:10px;
+  background: linear-gradient(90deg, var(--grad-reporte-start), var(--grad-reporte-end));
+}
+.reporte-icon svg{ display:block }
+
+.reporte-info{ display:flex; flex-direction:column; }
+.reporte-title{ font-weight:800; font-size:1rem; }
+.reporte-text{ color: var(--muted); margin-top:2px; }
+
+.reporte-footer{
+  position:absolute; right:10px; bottom:8px;
+  font-size:.78rem; color:#94a3b8;
+}
+.reporte-fecha{}
+
+/* ====== Modal dinámico (creado por JS) ====== */
+.modal-overlay{
+  position: fixed; inset: 0; z-index: 80;
+  background: rgba(0,0,0,.55);
+  display:flex; align-items:flex-start; justify-content:center;
+  padding: 10vh 16px 16px;
+}
+.modal-card{
+  position:relative;
+  width:min(92%, 560px);
+  background:#0f172a; color:#e5e7eb;
+  border:1px solid #1f2a44; border-radius:16px;
+  box-shadow: 0 20px 60px rgba(0,0,0,.35);
+  padding:22px 18px 18px;
+}
+.modal-close{
+  position:absolute; right:10px; top:8px;
+  width:32px; height:32px; border:none; border-radius:8px; cursor:pointer;
+  background:#1f2a44; color:#e5e7eb; font-size:20px; line-height:32px;
+}
+.modal-close:active{ transform: translateY(1px); }
+
+.modal-card h3{
+  margin: 0 32px 14px 0;   /* separación del título */
+  font-size:1.05rem; font-weight:800;
+}
+.modal-text{
+  margin: 10px 0 14px;     /* separación del texto */
+  color:#cbd5e1; white-space:pre-wrap; word-wrap:break-word;
+  line-height: 1.45;
+}
+.modal-fecha{
+  margin: 10px 0 0;        /* separación con la fecha */
+  font-size:.9rem; color:#94a3b8;
+}
+
+/* Responsivo */
+@media (min-width: 760px){
+  .content{padding: 20px}
+}
